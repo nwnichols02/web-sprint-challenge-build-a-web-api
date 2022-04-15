@@ -1,4 +1,3 @@
-// add middlewares here related to actions
 const Actions = require("./actions-model");
 
 function validateActionId(req, res, next) {
@@ -13,23 +12,17 @@ function validateActionId(req, res, next) {
 }
 
 function validateAction(req, res, next) {
-  const { description, notes, project_id } = req.body;
-  if (!description || !notes || !project_id === req.params.id) {
+  const { description, notes, project_id, completed } = req.body;
+  if (
+    !description ||
+    !notes ||
+    !project_id === req.params.id ||
+    completed === undefined
+  ) {
     res.status(400).json({ message: "missing required fields" });
   } else {
-    // req.notes = name.trim();
     next();
   }
 }
 
-function validateUpdatedAction(req, res, next) {
-  const { notes, description, project_id } = req.body;
-  if (!notes || !description || !project_id === req.params.id) {
-    res.status(400).json({ message: "missing required fields" });
-  } else {
-    // req.name = name.trim();
-    next();
-  }
-}
-
-module.exports = { validateActionId, validateAction, validateUpdatedAction };
+module.exports = { validateActionId, validateAction };

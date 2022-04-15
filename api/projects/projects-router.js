@@ -1,9 +1,8 @@
-// Write your "projects" router here!
 const express = require("express");
 const router = express.Router();
 
-//import middleware functions
 const Projects = require("./projects-model");
+
 const {
   validateProjectId,
   validateProject,
@@ -60,13 +59,6 @@ router.get("/:id/actions", validateProjectId, async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
-
-router.use((err, req, res, next) => {
-  res.status(err.status || 500).json({
-    message: "something went wrong",
-    error: err.message,
-  });
 });
 
 module.exports = router;
