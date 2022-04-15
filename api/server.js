@@ -8,9 +8,9 @@ server.use(express.json());
 server.use("/api/actions", actionRouter);
 server.use("/api/projects", projectsRouter);
 
-server.get("/", (req, res) => {
-  res.send("<h1>am i really working tho??</h1>");
-});
+// server.get("/", (req, res) => {
+//   res.send("<h1>am i really working tho??</h1>");
+// });
 
 // Configure your server here
 // Build your actions router in /api/actions/actions-router.js
